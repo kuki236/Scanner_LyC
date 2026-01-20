@@ -16,7 +16,7 @@ class GestorVentanas:
         
         if datos and hasattr(self.pantalla_actual, 'actualizar_datos'):
 
-            self.pantalla_actual.actualizar_datos(datos['texto_crudo'], datos['resultados'])
+            self.pantalla_actual.actualizar_datos(datos['texto_a_mostrar'], datos['resultados'])
 
         self.pantalla_actual.pack(fill="both", expand=True)
 
@@ -28,13 +28,13 @@ class GestorVentanas:
         resultados_simulados = {
             "Variables": [0, "Pendiente de implementar"],
             "Palabras Res.": [0, "Pendiente de implementar"],
-            "Números": [0, "Pendiente de implementar"],
+            "Números Enteros": [0, "Pendiente de implementar"],
+            "Números Reales": [0, "Pendiente de implementar"],
             "Operadores": [0, "Pendiente de implementar"],
-            "Comentarios": [1, "Texto limpio generado"] # Solo para debug
         }
 
         datos_paquete = {
-            'texto_crudo': texto_crudo,
+            'texto_a_mostrar': texto_limpio,
             'resultados': resultados_simulados
         }
 

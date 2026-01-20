@@ -97,27 +97,21 @@ class PantallaBienvenida(tk.Frame):
     def seleccionar_archivo(self):
         ruta_archivo = filedialog.askopenfilename(
             title="Seleccionar código fuente",
-            filetypes=(("Archivos C", "*.c"),("Archivos C++", "*.cpp"), ("Archivos de texto", "*.txt"), ("Todos", "*.*"))
+            filetypes=(("Todos", "*.*"),("Archivos C", "*.c"),("Archivos C++", "*.cpp"), ("Archivos de texto", "*.txt") )
         )
-        
         if ruta_archivo:
             try:
                 with open(ruta_archivo, 'r', encoding='utf-8') as f:
                     texto_crudo = f.read()
 
-                # 2. Imprimimos en consola (Requisito)
                 print("\n" + "="*40)
                 print(f"CONTENIDO ORIGINAL DEL ARCHIVO ({ruta_archivo}):")
                 print("="*40)
                 print(texto_crudo)
                 print("="*40 + "\n")
 
-                # Aquí más adelante llamarás a la lógica de P2, P3 y P4
-                # self.controller.iniciar_analisis(texto_crudo)
                 texto_sin_comentarios = self.scanner.limpiar_comentarios(texto_crudo)
-                print("\n" + ">"*20 + " TEXTO PROCESADO (SIN COMENTARIOS) " + "<"*20)
-                print(texto_sin_comentarios)
-                print("\n--------------------------------------------------")
+                
                 if self.controller:
                     self.controller.iniciar_analisis(texto_crudo, texto_sin_comentarios)
                 else:
