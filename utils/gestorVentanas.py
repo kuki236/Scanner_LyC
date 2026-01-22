@@ -1,12 +1,13 @@
 from pantallas.bienvenida import PantallaBienvenida
 from pantallas.resultados import PantallaResultados  
-
+from logica.scanner import ScannerManual
 
 class GestorVentanas:
     def __init__(self, root):
         self.root = root
         self.pantalla_actual = None
         self.escenarios = {}
+        self.scanner = ScannerManual()
 
     def cambiar_pantalla(self, nueva_pantalla_class, datos=None):
         if self.pantalla_actual:
@@ -24,18 +25,11 @@ class GestorVentanas:
         self.cambiar_pantalla(PantallaBienvenida)
 
     def iniciar_analisis(self, texto_crudo, texto_limpio):
-
-        resultados_simulados = {
-            "Variables": [0, "Pendiente de implementar"],
-            "Palabras Res.": [0, "Pendiente de implementar"],
-            "Números Enteros": [0, "Pendiente de implementar"],
-            "Números Reales": [0, "Pendiente de implementar"],
-            "Operadores": [0, "Pendiente de implementar"],
-        }
+        resultados = self.scanner.analizar(texto_limpio)
 
         datos_paquete = {
             'texto_a_mostrar': texto_limpio,
-            'resultados': resultados_simulados
+            'resultados': resultados
         }
 
         self.cambiar_pantalla(PantallaResultados, datos=datos_paquete)
